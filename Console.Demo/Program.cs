@@ -1,19 +1,29 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductQuotes;
 using ProductQuotes.Interfaces;
+using ProductQuotes.Services;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddProductQuotes();
-
 var host = builder.Build();
-var quote = host.Services.GetRequiredService<IProductQuoteServices>();
 
-var products = await quote.GetProductQuotes("facia delantera");
+var strategy = host.Services.GetRequiredService<IProductQuoteStrategy>();
 
-foreach (var product in products)
+Console.WriteLine("=== Provider: Static ===");
+var staticProducts = await strategy.GetProductQuotes(StaticProductQuoteService.Key, "facia delantera");
+foreach (var p in staticProducts)
 {
-    Console.WriteLine(product.Url);
-    Console.WriteLine(product.ProductName);
-    Console.WriteLine(product.Price);
+    Console.WriteLine($"  [{p.Store}] {p.ProductName} — ${p.Price:N2} MXN");
+    Console.WriteLine($"  {p.Url}");
+    Console.WriteLine();
+}
+
+Console.WriteLine("=== Provider: SerpApi ===");
+var serpApiProducts = await strategy.GetProductQuotes(SerpApiProductQuoteService.Key, "facia delantera");
+foreach (var p in serpApiProducts)
+{
+    Console.WriteLine($"  [{p.Store}] {p.ProductName} — ${p.Price:N2} MXN");
+    Console.WriteLine($"  {p.Url}");
+    Console.WriteLine();
 }

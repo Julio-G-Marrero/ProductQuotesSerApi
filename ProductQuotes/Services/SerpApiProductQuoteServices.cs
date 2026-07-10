@@ -28,6 +28,8 @@ namespace ProductQuotes.Services;
 /// </remarks>
 public sealed class SerpApiProductQuoteService : IProductQuoteServices
 {
+    public const string Key = "https://serpapi.com";
+
     // TODO: migrar a variable de entorno o inyección de dependencias (decisión pendiente del equipo).
     private const string ApiKey = "15a263cf2f80126761cc6c7ca8e77b7a1cbe21c6b1223c16fcb44105d29557cf";
     private const string BaseUrl = "https://serpapi.com/search.json";

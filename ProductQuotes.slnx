@@ -1,1 +1,4 @@
-<Solution />
+<Solution>
+  <Project Path="ProductQuotes/ProductQuotes.csproj" />
+  <Project Path="Console.Demo/Console.Demo.csproj" />
+</Solution>
