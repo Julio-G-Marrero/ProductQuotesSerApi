@@ -1,10 +1,12 @@
-using System.Net.Http.Json;
+using ProductQuotes.Exceptions;
+using ProductQuotes.Interfaces;
+using ProductQuotes.Models;
 using System.Text.Json;
 
-namespace ProductQuotes;
+namespace ProductQuotes.Services;
 
 /// <summary>
-/// Implementación de <see cref="IProductQuoteProvider"/> respaldada por Google Shopping vía SerpApi.
+/// Implementación de <see cref="IProductQuoteServices"/> respaldada por Google Shopping vía SerpApi.
 /// </summary>
 /// <remarks>
 /// <para>
@@ -24,7 +26,7 @@ namespace ProductQuotes;
 /// evaluar migración a variable de entorno o inyección de dependencias.
 /// </para>
 /// </remarks>
-public sealed class SerpApiProductQuoteProvider : IProductQuoteProvider
+public sealed class SerpApiProductQuoteService : IProductQuoteServices
 {
     // TODO: migrar a variable de entorno o inyección de dependencias (decisión pendiente del equipo).
     private const string ApiKey = "15a263cf2f80126761cc6c7ca8e77b7a1cbe21c6b1223c16fcb44105d29557cf";
@@ -33,7 +35,7 @@ public sealed class SerpApiProductQuoteProvider : IProductQuoteProvider
     private static readonly HttpClient Http = new();
 
     public async Task<List<ProductQuoteDto>> GetProductQuotes(
-        string productName, string country, string language, int pageNumber, int pageSize)
+        string productName, string country = "mx", string language = "es", int pageNumber = 1, int pageSize = 10)
     {
         if (string.IsNullOrWhiteSpace(productName))
             throw new ArgumentException("productName no puede estar vacío.", nameof(productName));

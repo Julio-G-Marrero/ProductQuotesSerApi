@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../Console.Demo/Console.Demo.csproj" />
+  <Project Path="ProductQuotes.csproj" />
+</Solution>

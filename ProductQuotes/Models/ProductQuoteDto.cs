@@ -1,4 +1,4 @@
-namespace ProductQuotes;
+namespace ProductQuotes.Models;
 
 /// <summary>
 /// Cotización de un producto en una tienda específica.

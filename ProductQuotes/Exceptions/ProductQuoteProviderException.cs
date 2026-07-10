@@ -1,4 +1,4 @@
-namespace ProductQuotes;
+namespace ProductQuotes.Exceptions;
 
 /// <summary>
 /// Se lanza cuando falla la consulta al proveedor de cotizaciones (red, autenticación,
