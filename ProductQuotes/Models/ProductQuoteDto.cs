@@ -11,4 +11,18 @@ namespace ProductQuotes.Models;
 /// de Google (no el link directo del sitio del vendedor) — Google no expone el link directo en
 /// los resultados de shopping_results.
 /// </param>
-public sealed record ProductQuoteDto(string ProductName, string Store, decimal Price, string Url);
+/// <param name="ImageUrl">URL de la miniatura del producto. Vacío si el proveedor no la tiene.</param>
+/// <param name="ImmersiveProductPageToken">
+/// Token de Google (solo lo produce el proveedor SerpApi/Google Shopping) que permite resolver el
+/// link directo del vendedor y más detalle del producto vía el motor <c>google_immersive_product</c>
+/// — investigado pero todavía no implementado como resolución automática por el costo en créditos
+/// (1 llamada extra por producto). Se devuelve crudo para que el consumidor decida cuándo vale la
+/// pena resolverlo. Vacío si el proveedor no lo soporta.
+/// </param>
+public sealed record ProductQuoteDto(
+    string ProductName,
+    string Store,
+    decimal Price,
+    string Url,
+    string ImageUrl = "",
+    string ImmersiveProductPageToken = "");
