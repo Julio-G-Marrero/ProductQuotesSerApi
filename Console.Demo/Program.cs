@@ -20,10 +20,12 @@ foreach (var p in staticProducts)
 }
 
 Console.WriteLine("=== Provider: SerpApi ===");
-var serpApiProducts = await strategy.GetProductQuotes(SerpApiProductQuoteService.Key, "facia delantera");
+var serpApiProducts = await strategy.GetProductQuotes(SerpApiProductQuoteService.Key, "facia delantera", pageSize: 3);
 foreach (var p in serpApiProducts)
 {
     Console.WriteLine($"  [{p.Store}] {p.ProductName} — ${p.Price:N2} MXN");
-    Console.WriteLine($"  {p.Url}");
+    Console.WriteLine($"  Url: {p.Url}");
+    Console.WriteLine($"  ImageUrl: {p.ImageUrl}");
+    Console.WriteLine($"  ImmersiveProductPageToken: {(string.IsNullOrEmpty(p.ImmersiveProductPageToken) ? "(vacío)" : p.ImmersiveProductPageToken[..Math.Min(30, p.ImmersiveProductPageToken.Length)] + "...")}");
     Console.WriteLine();
 }

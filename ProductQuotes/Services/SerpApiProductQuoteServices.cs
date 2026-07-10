@@ -97,11 +97,13 @@ public sealed class SerpApiProductQuoteService : IProductQuoteServices
                     var title = item.TryGetProperty("title", out var t) ? t.GetString() ?? string.Empty : string.Empty;
                     var source = item.TryGetProperty("source", out var s) ? s.GetString() ?? string.Empty : string.Empty;
                     var link = item.TryGetProperty("product_link", out var l) ? l.GetString() ?? string.Empty : string.Empty;
+                    var imageUrl = item.TryGetProperty("thumbnail", out var img) ? img.GetString() ?? string.Empty : string.Empty;
+                    var immersiveToken = item.TryGetProperty("immersive_product_page_token", out var tok) ? tok.GetString() ?? string.Empty : string.Empty;
 
                     if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(source) || string.IsNullOrEmpty(link))
                         continue;
 
-                    quotes.Add(new ProductQuoteDto(title, source, priceProp.GetDecimal(), link));
+                    quotes.Add(new ProductQuoteDto(title, source, priceProp.GetDecimal(), link, imageUrl, immersiveToken));
                 }
             }
 
