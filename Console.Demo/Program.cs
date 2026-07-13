@@ -46,3 +46,22 @@ catch (Exception ex)
 {
     Console.WriteLine($"  ERROR: {ex.GetType().Name}: {ex.Message}");
 }
+
+Console.WriteLine("=== Provider: Optimo Autopartes ===");
+Console.WriteLine("  (requiere las variables de entorno OPTIMO_USUARIO / OPTIMO_PASSWORD)");
+try
+{
+    var optimoProducts = await strategy.GetProductQuotes(OptimoAutopartesProductQuoteService.Key, "espejo aveo", pageSize: 5);
+    Console.WriteLine($"  ({optimoProducts.Count} resultados)");
+    foreach (var p in optimoProducts)
+    {
+        Console.WriteLine($"  [{p.Store}] {p.ProductName} — ${p.Price:N2} MXN");
+        Console.WriteLine($"  Url: {p.Url}");
+        Console.WriteLine($"  ImageUrl: {p.ImageUrl}");
+        Console.WriteLine();
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"  ERROR: {ex.GetType().Name}: {ex.Message}");
+}

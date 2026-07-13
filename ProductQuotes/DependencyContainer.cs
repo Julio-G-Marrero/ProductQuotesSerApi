@@ -12,6 +12,7 @@ public static class DependencyContainer
         services.AddKeyedScoped<IProductQuoteServices, SerpApiProductQuoteService>(SerpApiProductQuoteService.Key);
         services.AddKeyedScoped<IProductQuoteServices, StaticProductQuoteService>(StaticProductQuoteService.Key);
         services.AddKeyedScoped<IProductQuoteServices, AldoAutopartesProductQuoteService>(AldoAutopartesProductQuoteService.Key);
+        services.AddKeyedScoped<IProductQuoteServices, OptimoAutopartesProductQuoteService>(OptimoAutopartesProductQuoteService.Key);
 
         services.AddScoped<IProductQuoteStrategy, ProductQuoteStrategy>();
 
