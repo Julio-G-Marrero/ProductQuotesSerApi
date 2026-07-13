@@ -29,3 +29,21 @@ foreach (var p in serpApiProducts)
     Console.WriteLine($"  ImmersiveProductPageToken: {(string.IsNullOrEmpty(p.ImmersiveProductPageToken) ? "(vacío)" : p.ImmersiveProductPageToken[..Math.Min(30, p.ImmersiveProductPageToken.Length)] + "...")}");
     Console.WriteLine();
 }
+
+Console.WriteLine("=== Provider: Aldo Autopartes ===");
+try
+{
+    var aldoProducts = await strategy.GetProductQuotes(AldoAutopartesProductQuoteService.Key, "Chevrolet|Aveo|2018|Cofre", pageSize: 10);
+    Console.WriteLine($"  ({aldoProducts.Count} resultados)");
+    foreach (var p in aldoProducts)
+    {
+        Console.WriteLine($"  [{p.Store}] {p.ProductName} — costo real: ${p.Price:N2} MXN");
+        Console.WriteLine($"  Url: {p.Url}");
+        Console.WriteLine($"  ImageUrl: {p.ImageUrl}");
+        Console.WriteLine();
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"  ERROR: {ex.GetType().Name}: {ex.Message}");
+}
