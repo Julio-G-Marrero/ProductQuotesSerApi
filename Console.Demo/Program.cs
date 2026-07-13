@@ -32,7 +32,7 @@ foreach (var p in serpApiProducts)
 Console.WriteLine("=== Provider: Aldo Autopartes ===");
 try
 {
-    var aldoProducts = await strategy.GetProductQuotes(AldoAutopartesProductQuoteService.Key, "facia delantera", pageSize: 10);
+    var aldoProducts = await strategy.GetProductQuotes(AldoAutopartesProductQuoteService.Key, "Chevrolet|Aveo|2018|Espejo", pageSize: 10);
     Console.WriteLine($"  ({aldoProducts.Count} resultados)");
     foreach (var p in aldoProducts)
     {
