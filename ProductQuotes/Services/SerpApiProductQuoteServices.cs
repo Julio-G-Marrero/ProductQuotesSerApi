@@ -103,7 +103,7 @@ public sealed class SerpApiProductQuoteService : IProductQuoteServices
                     if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(source) || string.IsNullOrEmpty(link))
                         continue;
 
-                    quotes.Add(new ProductQuoteDto(title, source, priceProp.GetDecimal(), link, imageUrl, immersiveToken));
+                    quotes.Add(new ProductQuoteDto(title, source, priceProp.GetDecimal(), link, imageUrl));
                 }
             }
 

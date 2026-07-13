@@ -127,7 +127,7 @@ public sealed class AldoAutopartesProductQuoteService : IProductQuoteServices
 
         var costoReal = precioSinIva * (1 - DescuentoAldo);
 
-        return new ProductQuoteDto(descripcion, Store, costoReal, url, imageUrl, string.Empty);
+        return new ProductQuoteDto(descripcion, Store, costoReal, url, imageUrl);
     }
 
     private static bool TryParsePrecio(string texto, out decimal valor)
